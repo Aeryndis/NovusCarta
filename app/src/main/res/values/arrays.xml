@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the category drop-down Spinner -->
+    <string-array name="array_category_options">
+        <item>@string/category_unknown</item>
+        <item>@string/category_fiction</item>
+        <item>@string/category_nonfiction</item>
+        <item>@string/category_reference</item>
+    </string-array>
+</resources>

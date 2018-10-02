@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">Novus Carta</string>
+
+    <!-- Label for overflow menu option that inserts fake book data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for overflow menu option that deletes all book data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Books</string>
+
+    <!-- Title for the activity to add a new book [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_book">Add a Book</string>
+
+    <!-- Title for the activity to edit a book [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_book">Edit Book</string>
+
+    <!-- Label for editor menu option to save book and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <!-- Label for editor overflow menu option that deletes the current book [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+
+    <!-- Label for category information in the editor [CHAR LIMIT=30] -->
+    <string name="category_selection">Category</string>
+
+    <!-- Label for supplier information in the editor [CHAR LIMIT=30] -->
+    <string name="category_supplier">Supplier</string>
+
+    <!-- Text hint for product name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_title">Book Title</string>
+
+    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_book_price">Price e.g 3999 for $39.99</string>
+
+    <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_quantity">Quantity</string>
+
+    <!-- Text hint for supplier name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_supplier_name">Name</string>
+
+    <!-- Text hint for supplier phone number in the editor [CHAR LIMIT=30] -->
+    <string name="hint_supplier_number">Contact Number</string>
+
+    <!-- Label for dropdown menu option if the product's category is unknown [CHAR LIMIT=20] -->
+    <string name="category_unknown">Unknown</string>
+
+    <!-- Label for dropdown menu option if the product's category is fiction [CHAR LIMIT=20] -->
+    <string name="category_fiction">Fiction</string>
+
+    <!-- Label for dropdown menu option if the product's category is non-fiction [CHAR LIMIT=20] -->
+    <string name="category_nonfiction">Non-Fiction</string>
+
+    <!-- Label for dropdown menu option if the product's category is reference [CHAR LIMIT=20] -->
+    <string name="category_reference">Reference</string>
+
+    <!-- Toast message in editor when new book has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_book_successful">Book saved</string>
+
+    <!-- Toast message in editor when new book has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_book_failed">Error with saving book</string>
+
+    <!-- Toast message in editor when a book has been successfully updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_book_successful">Book updated</string>
+
+    <!-- Toast message in editor when a book has failed to be updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_book_failed">Error with updating book</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+
+    <!-- Dialog button text for the option to keep editing the current book [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+
+    <!-- Toast message in editor when current book was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_book_successful">Book deleted</string>
+
+    <!-- Toast message in editor when current book has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_book_failed">Error with deleting book</string>
+
+    <!-- Dialog message to ask the user to confirm deleting the current book [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg">Delete this book?</string>
+
+    <!-- Dialog button text for the option to confirm deleting the current book [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+
+    <!-- Dialog button text for the option to cancel deletion of current book [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+
+    <!-- Text displayed on main screen when database is empty / new -->
+    <string name="empty_view_title_text">Database Contains No Books</string>
+
+    <!-- Hint text displayed when the database is empty / new -->
+    <string name="empty_view_subtitle_text">Please add product details, all fields required</string>
+
+    <!-- Error message displayed when Call Supplier intent fails -->
+    <string name="call_intent_failed">Call failed</string>
+
+    <!-- Message displayed when book successfully sold / database is updated -->
+    <string name="book_sold">1 Copy Sold</string>
+
+    <!-- Error message displayed when book sale fails / database is not updated -->
+    <string name="sold_database_error">Error updating database</string>
+
+    <!-- Message displayed when a book has insufficient quantity to sell -->
+    <string name="insufficient_quantity">No copies in stock to sell</string>
+
+    <!-- Label for Delete Product button -->
+    <string name="delete_product">Delete Product</string>
+
+    <!-- Label for Call button -->
+    <string name="call">Call</string>
+
+    <!-- Label for the Sold button -->
+    <string name="sold_button_label">Sold</string>
+</resources>
