@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/editorBackground"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
     tools:context=".EditorActivity">
@@ -17,6 +18,7 @@
 
         <!-- Label -->
         <TextView
+            style="@style/editorActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -58,15 +60,15 @@
                     android:layout_height="wrap_content"
                     android:text="-"/>
 
-            <!-- Product quantity field -->
-            <EditText
-                android:id="@+id/edit_product_quantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:hint="@string/hint_quantity"
-                android:inputType="number" />
+                <!-- Product quantity field -->
+                <EditText
+                    android:id="@+id/edit_product_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin"
+                    android:hint="@string/hint_quantity"
+                    android:inputType="number" />
 
                 <!-- Increase quantity button -->
                 <Button
@@ -86,11 +88,12 @@
         android:id="@+id/container_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/activity_margin"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
+            style="@style/editorActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -108,7 +111,7 @@
                 android:id="@+id/spinner_category"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:paddingRight="16dp"
+                android:paddingRight="@dimen/activity_margin"
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
@@ -120,11 +123,12 @@
         android:id="@+id/container_supplier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/activity_margin"
         android:orientation="horizontal">
 
         <!-- Label -->
         <TextView
+            style="@style/editorActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -136,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:orientation="vertical"
-            android:paddingLeft="4dp">
+            android:paddingLeft="@dimen/input_padding">
 
             <!-- Supplier name field -->
             <EditText
@@ -158,8 +162,8 @@
                 android:id="@+id/call_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/call"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:text="@string/call" />
 
         </LinearLayout>
 
@@ -167,12 +171,13 @@
 
     <Button
         android:id="@+id/editor_delete_button"
+        style="@style/SoldAndDeleteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/delete_button_margin"
+        android:focusable="false"
         android:text="@string/delete_product"
-        android:visibility="invisible"
-        android:focusable="false"/>
+        android:visibility="invisible" />
 
 </LinearLayout>
 

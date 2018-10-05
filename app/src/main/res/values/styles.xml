@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="emptyDatabaseTitleView">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="emptyDatabaseSubtitleView">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textColor">@color/subtitleText</item>
+    </style>
+
+    <style name="ProductName">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/productName</item>
+    </style>
+
+    <style name="ProductPrice">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textColor">@color/productPrice</item>
+    </style>
+
+    <style name="SoldAndDeleteButton">
+        <item name="android:background">@color/soldAndDeleteButtons</item>
+        <item name="android:textColor">@color/soldAndDeleteButtonsText</item>
+    </style>
+
+    <style name="editorActivity">
+        <item name="android:textColor">@color/editorActivityText</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

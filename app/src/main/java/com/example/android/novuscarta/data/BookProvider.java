@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.android.novuscarta.data.BookContract.BookEntry;
@@ -122,37 +121,6 @@ public class BookProvider extends ContentProvider {
      * for that specific row in the database.
      */
     private Uri insertBook(Uri uri, ContentValues values) {
-        // Check that the product name is not null
-        String productName = values.getAsString(BookEntry.COLUMN_PRODUCT_NAME);
-        if (TextUtils.isEmpty(productName)) {
-            throw new IllegalArgumentException("Book requires a title");
-        }
-        // Check that the price is not null
-        Integer productPrice = values.getAsInteger(BookEntry.COLUMN_PRODUCT_PRICE);
-        if (productPrice != null && productPrice < 0) {
-            throw new IllegalArgumentException("Book requires a price");
-        }
-        // Check that the quantity is not null
-        Integer productQuantity = values.getAsInteger(BookEntry.COLUMN_PRODUCT_QUANTITY);
-        if (productQuantity != null && productQuantity < 1) {
-            throw new IllegalArgumentException("Quantity must be at least 1");
-        }
-        // Check that the category is valid
-        Integer category = values.getAsInteger(BookEntry.COLUMN_PRODUCT_CATEGORY);
-        if (category == null || !BookEntry.isValidCategory(category)) {
-            throw new IllegalArgumentException("Book requires valid category");
-        }
-        // Check that the supplier name is not null
-        String supplierName = values.getAsString(BookEntry.COLUMN_SUPPLIER_NAME);
-        if (supplierName == null) {
-            throw new IllegalArgumentException("Supplier name required");
-        }
-        // Check that the supplier number is not null
-        String supplierNumber = values.getAsString(BookEntry.COLUMN_SUPPLIER_NAME);
-        if (supplierNumber == null) {
-            throw new IllegalArgumentException("Supplier number required");
-        }
-
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -169,6 +137,7 @@ public class BookProvider extends ContentProvider {
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
         return ContentUris.withAppendedId(uri, id);
+
     }
 
     /**
@@ -241,7 +210,7 @@ public class BookProvider extends ContentProvider {
         }
         // If the {@link BookEntry#COLUMN_SUPPLIER_NUMBER} key is present,
         // check that the number value is not null
-        if (values.containsKey(BookEntry.COLUMN_PRODUCT_PRICE)) {
+        if (values.containsKey(BookEntry.COLUMN_SUPPLIER_NUMBER)) {
             String supplierNumber = values.getAsString(BookEntry.COLUMN_SUPPLIER_NUMBER);
             if (supplierNumber == null) {
                 throw new IllegalArgumentException("Supplier number required");

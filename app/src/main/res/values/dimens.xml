@@ -5,4 +5,10 @@
 
     <!-- Common margin value used throughout the app -->
     <dimen name="activity_margin">16dp</dimen>
+
+    <dimen name="view_padding">8dp</dimen>
+
+    <dimen name="input_padding">4dp</dimen>
+
+    <dimen name="delete_button_margin">40dp</dimen>
 </resources>

@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -111,7 +110,7 @@ public class EditorActivity extends AppCompatActivity implements
                 Intent callSupplier = new Intent(Intent.ACTION_DIAL);
                 callSupplier.setData(Uri.parse("tel:"+supplierNumber));
                 startActivity(callSupplier);
-            // Show an error message if the intent doesn't work
+                // Show an error message if the intent doesn't work
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), getString(R.string.call_intent_failed),
                         Toast.LENGTH_SHORT).show();
@@ -122,7 +121,6 @@ public class EditorActivity extends AppCompatActivity implements
     private Button.OnClickListener mDecreaseClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //mBookHasChanged = true;
             Integer currentQuantityInteger;
             try {
                 // Get the current quantity value from the EditText field
@@ -145,7 +143,6 @@ public class EditorActivity extends AppCompatActivity implements
     private Button.OnClickListener mIncreaseClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //mBookHasChanged = true;
             Integer currentQuantityInteger;
             try {
                 // Get the current quantity value from the EditText field
@@ -277,7 +274,7 @@ public class EditorActivity extends AppCompatActivity implements
     }
 
     private void saveBook() {
-        // Read the entered information and convert to the correct data type for the database
+        // Read the entered information
         String productNameString = mProductNameEditText.getText().toString().trim();
         String productPriceString = mProductPriceEditText.getText().toString().trim();
         String productQuantityString = mProductQuantityEditText.getText().toString().trim();
@@ -298,52 +295,60 @@ public class EditorActivity extends AppCompatActivity implements
             return;
         }
 
-        int productPriceInt = Integer.parseInt(productPriceString);
-        int productQuantityInt = Integer.parseInt(productQuantityString);
+        if (VerifyData(productNameString, productPriceString, productQuantityString,
+                supplierNameString, supplierNumberString)) {
 
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_PRODUCT_NAME, productNameString); //name
-        values.put(BookEntry.COLUMN_PRODUCT_PRICE, productPriceInt); //price
-        values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, productQuantityInt); // quantity
-        values.put(BookEntry.COLUMN_PRODUCT_CATEGORY, mCategory); // category
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString); // supplier name
-        values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, supplierNumberString); // supplier number
+            int productPriceInt = Integer.parseInt(productPriceString);
+            int productQuantityInt = Integer.parseInt(productQuantityString);
 
-        // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
-        if (mCurrentBookUri == null) {
-            // This is a NEW book, so insert a new book into the provider,
-            // returning the content URI for the new book.
-            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+            // Create a new map of values, where column names are the keys
+            ContentValues values = new ContentValues();
+            values.put(BookEntry.COLUMN_PRODUCT_NAME, productNameString); //name
+            values.put(BookEntry.COLUMN_PRODUCT_PRICE, productPriceInt); //price
+            values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, productQuantityInt); // quantity
+            values.put(BookEntry.COLUMN_PRODUCT_CATEGORY, mCategory); // category
+            values.put(BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString); // supplier name
+            values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, supplierNumberString); // supplier number
 
-            // Show a toast message depending on whether or not the insertion was successful.
-            if (newUri == null) {
-                // If the new content URI is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.editor_insert_book_failed),
-                        Toast.LENGTH_SHORT).show();
+            // Determine if this is a new or existing book by checking if mCurrentBookUri is null
+            // or not
+            if (mCurrentBookUri == null) {
+                // This is a NEW book, so insert a new book into the provider,
+                // returning the content URI for the new book.
+                Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+
+                // Show a toast message depending on whether or not the insertion was successful.
+                if (newUri == null) {
+                    // If the new content URI is null, then there was an error with insertion.
+                    Toast.makeText(this, getString(R.string.editor_insert_book_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the insertion was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.editor_insert_book_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             } else {
-                // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_insert_book_successful),
-                        Toast.LENGTH_SHORT).show();
+                // Otherwise this is an EXISTING book, so update the book with content URI:
+                // mCurrentBookUri and pass in the new ContentValues. Pass in null for the selection
+                // and selection args because mCurrentBookUri will already identify the correct row
+                // in the database that we want to modify.
+                int rowsAffected = getContentResolver().update(mCurrentBookUri,
+                        values, null, null);
+
+                // Show a toast message depending on whether or not the update was successful.
+                if (rowsAffected == 0) {
+                    // If no rows were affected, then there was an error with the update.
+                    Toast.makeText(this, getString(R.string.editor_update_book_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the update was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.editor_update_book_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
+            finish();
         } else {
-            // Otherwise this is an EXISTING book, so update the book with content URI:
-            // mCurrentBookUri and pass in the new ContentValues. Pass in null for the selection
-            // and selection args because mCurrentBookUri will already identify the correct row in
-            // the database that we want to modify.
-            int rowsAffected = getContentResolver().update(mCurrentBookUri,
-                    values, null, null);
-
-            // Show a toast message depending on whether or not the update was successful.
-            if (rowsAffected == 0) {
-                // If no rows were affected, then there was an error with the update.
-                Toast.makeText(this, getString(R.string.editor_update_book_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_update_book_successful),
-                        Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, R.string.all_fields_required, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -378,8 +383,6 @@ public class EditorActivity extends AppCompatActivity implements
             case R.id.action_save:
                 // Save book to database
                 saveBook();
-                // Exit activity
-                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -509,6 +512,7 @@ public class EditorActivity extends AppCompatActivity implements
                     break;
                 case BookEntry.CATEGORY_REFERENCE:
                     mCategorySpinner.setSelection(3);
+                    break;
                 default:
                     mCategorySpinner.setSelection(0);
                     break;
@@ -612,4 +616,41 @@ public class EditorActivity extends AppCompatActivity implements
         // Close the activity
         finish();
     }
+
+    /**
+     * Data validation class to ensure user has entered data in all the fields
+     *
+     * @param title          Title of the book
+     * @param price          Price of the book
+     * @param quantity       Quantity of the book
+     * @param supplierName   Supplier name for the book
+     * @param supplierNumber Supplier contact number
+     * @return Return true if all fields have data, false if any do not
+     */
+    public boolean VerifyData(String title, String price, String quantity, String supplierName,
+                              String supplierNumber) {
+        boolean dataOk = true;
+        // check title field is populated
+        if (TextUtils.isEmpty(title)) {
+            dataOk = false;
+        }
+        // check price field is populated
+        if (TextUtils.isEmpty(price)) {
+            dataOk = false;
+        }
+        // check quantity field is populated
+        if (TextUtils.isEmpty(quantity)) {
+            dataOk = false;
+        }
+        // check supplier name field is populated
+        if (TextUtils.isEmpty(supplierName)) {
+            dataOk = false;
+        }
+        // check supplier phone number field is populated
+        if (TextUtils.isEmpty(supplierNumber)) {
+            dataOk = false;
+        }
+        return dataOk;
+    }
+
 }

@@ -97,7 +97,7 @@ public class CatalogActivity extends AppCompatActivity implements
         values.put(BookEntry.COLUMN_PRODUCT_NAME, "Good Omens");
         values.put(BookEntry.COLUMN_PRODUCT_PRICE, 1499);
         values.put(BookEntry.COLUMN_PRODUCT_QUANTITY, 2);
-        values.put(BookEntry.COLUMN_PRODUCT_CATEGORY, BookEntry.CATEGORY_REFERENCE);
+        values.put(BookEntry.COLUMN_PRODUCT_CATEGORY, BookEntry.CATEGORY_FICTION);
         values.put(BookEntry.COLUMN_SUPPLIER_NAME, "ACE Science Fiction");
         values.put(BookEntry.COLUMN_SUPPLIER_NUMBER, "8007636782");
 
@@ -133,7 +133,7 @@ public class CatalogActivity extends AppCompatActivity implements
             case R.id.action_insert_dummy_data:
                 insertBook();
                 return true;
-             // Respond to a click on the "Delete all entries" menu option
+            // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
                 deleteAllBooks();
                 return true;
@@ -157,7 +157,7 @@ public class CatalogActivity extends AppCompatActivity implements
                 null,
                 null,
                 null);
-        }
+    }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {

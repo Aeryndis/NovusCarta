@@ -68,13 +68,13 @@ public class BookCursorAdapter extends CursorAdapter {
         // Find the columns of book attributes that we're interested in
         int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRODUCT_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRODUCT_PRICE);
+        int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRODUCT_PRICE);
         int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRODUCT_QUANTITY);
 
         // Read the book attributes from the Cursor for the current book
         String bookId = cursor.getString(idColumnIndex);
         String bookName = cursor.getString(nameColumnIndex);
-        String bookPrice = cursor.getString(breedColumnIndex);
+        String bookPrice = cursor.getString(priceColumnIndex);
         final String bookQuantity = cursor.getString(quantityColumnIndex);
 
         // Update the TextViews with the attributes for the current book

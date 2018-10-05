@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#5d4037</color>
+    <color name="colorPrimaryDark">#321911</color>
+    <color name="colorAccent">#ff5722</color>
+
+    <color name="catalogBackground">#d7ccc8</color>
+
+    <color name="listBackground">#efebe9</color>
+
+    <color name="editorBackground">#e0e0e0</color>
+
+    <color name="subtitleText">#A2AAB0</color>
+
+    <color name="productName">#2B3D4D</color>
+
+    <color name="productPrice">#AEB6BD</color>
+
+    <color name="soldAndDeleteButtons">#bf360c</color>
+    <color name="soldAndDeleteButtonsText">#ffffff</color>
+
+    <color name="editorActivityText">#263238</color>
+
 </resources>
